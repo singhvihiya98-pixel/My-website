@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lumina | Modern Interior Decor</title>
+    <style>
+        /* --- CSS VARIABLES & RESET --- */
+        :root {
+            --primary: #2c3e50;
+            --accent: #d4a373;
+            --bg-light: #f9f9f9;
+            --text-dark: #333;
+            --text-light: #666;
+            --white: #ffffff;
+            --shadow: 0 4px 15px rgba(0,0,0,0.05);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+        img { max-width: 100%; display: block; }
+
+        /* --- HEADER & NAV --- */
+        header {
+            background: var(--white);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .cart-btn {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -10px;
+            background: var(--accent);
+            color: white;
+            font-size: 0.7rem;
+            padding: 2px 6px;
+            border-radius: 50%;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 80vh;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background: var(--accent);
+            color: var(--white);
+            border-radius: 30px;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: #c08b5c;
+            transform: translateY(-2px);
+        }
+
+        /* --- CATEGORIES --- */
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin: 4rem 0 2rem;
+            color: var(--primary);
+        }
+
+        .categories {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .cat-card {
+            position: relative;
+            height: 250px;
+            border-radius: 10px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .cat-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .cat-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .cat-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cat-overlay h3 {
+            color: white;
+            font-size: 1.5rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+
+        /* --- PRODUCTS --- */
+        .products {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .product-img {
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .product-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-cat {
+            font-size: 0.8rem;
+            color: var(--text-light);
+            text-transform: uppercase;
+        }
+
+        .product-title {
+            font-size: 1.1rem;
+            margin: 0.5rem 0;
+            color: var(--primary);
+        }
+
+        .product-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1rem;
+        }
+
+        .price {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--accent);
+        }
+
+        .add-btn {
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--primary);
+            background: transparent;
+            color: var(--primary);
+            border-radius: 5px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .add-btn:hover {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background: var(--primary);
+            color: var(--white);
+            padding: 4rem 2rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-col h4 {
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-col ul li a {
+            color: #ccc;
+            transition: var(--transition);
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--accent);
+        }
+
+        /* --- MOBILE RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .nav-links { display: none; } /* Hidden for simplicity in this demo */
+            .hero-content h1 { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <nav>
+            <div class="logo">LUMINA.</div>
+            <ul class="nav-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#shop">Shop</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="cart-btn" onclick="alert('Cart feature coming soon!')">
+                🛒 <span class="cart-count" id="cart-count">0</span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Elevate Your Living Space</h1>
+            <p>Minimalist furniture and decor for the modern home.</p>
+            <a href="#shop" class="btn">Shop Collection</a>
+        </div>
+    </section>
+
+    <!-- CATEGORIES -->
+    <h2 class="section-title">Browse by Category</h2>
+    <section class="categories">
+        <div class="cat-card">
+            <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Furniture">
+            <div class="cat-overlay"><h3>Furniture</h3></div>
+        </div>
+        <div class="cat-card">
+            <img src="https://images.unsplash.com/photo-1513519245088-0e12902e5a38?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Decor">
+            <div class="cat-overlay"><h3>Decor</h3></div>
+        </div>
+        <div class="cat-card">
+            <img src="https://images.unsplash.com/photo-1565814329452-e1efa11c5b89?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Lighting">
+            <div class="cat-overlay"><h3>Lighting</h3></div>
+        </div>
+    </section>
+
+    <!-- FEATURED PRODUCTS -->
+    <h2 class="section-title" id="shop">Trending Now</h2>
+    <section class="products">
+        <!-- Product 1 -->
+        <div class="product-card">
+            <div class="product-img">
+                <img src="https://images.unsplash.com/photo-1592078615290-033ee584e267?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Modern Sofa">
+            </div>
+            <div class="product-info">
+                <span class="product-cat">Living Room</span>
+                <h3 class="product-title">Velvet Modular Sofa</h3>
+                <div class="product-footer">
+                    <span class="price">$899.00</span>
+                    <button class="add-btn" onclick="addToCart()">Add +</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Product 2 -->
+        <div class="product-card">
+            <div class="product-img">
+                <img src="https://images.unsplash.com/photo-1532323544230-7191fd51bc1b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Wooden Chair">
+            </div>
+            <div class="product-info">
+                <span class="product-cat">Dining</span>
+                <h3 class="product-title">Oak Timber Chair</h3>
+                <div class="product-footer">
+                    <span class="price">$149.00</span>
+                    <button class="add-btn" onclick="addToCart()">Add +</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Product 3 -->
+        <div class="product-card">
+            <div class="product-img">
+                <img src="https://images.unsplash.com/photo-1507473888900-52e1adad5420?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Lamp">
+            </div>
+            <div class="product-info">
+                <span class="product-cat">Lighting</span>
+                <h3 class="product-title">Ceramic Table Lamp</h3>
+                <div class="product-footer">
+                    <span class="price">$85.00</span>
+                    <button class="add-btn" onclick="addToCart()">Add +</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Product 4 -->
+        <div class="product-card">
+            <div class="product-img">
+                <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Armchair">
+            </div>
+            <div class="product-info">
+                <span class="product-cat">Living Room</span>
+                <h3 class="product-title">Mid-Century Armchair</h3>
+                <div class="product-footer">
+                    <span class="price">$450.00</span>
+                    <button class="add-btn" onclick="addToCart()">Add +</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-col">
+                <h4>LUMINA.</h4>
+                <p>Curating the best in modern interior design since 2023.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Shop</h4>
+                <ul>
+                    <li><a href="#">All Products</a></li>
+                    <li><a href="#">New Arrivals</a></li>
+                    <li><a href="#">Best Sellers</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Shipping</a></li>
+                    <li><a href="#">Returns</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        let cartItems = 0;
+
+        function addToCart() {
+            cartItems++;
+            document.getElementById('cart-count').innerText = cartItems;
+            
+            // Simple animation effect on the button
+            const btn = event.target;
+            const originalText = btn.innerText;
+            btn.innerText = "Added!";
+            btn.style.background = "#2c3e50";
+            btn.style.color = "white";
+            
+            setTimeout(() => {
+                btn.innerText = originalText;
+                btn.style.background = "transparent";
+                btn.style.color = "#2c3e50";
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
